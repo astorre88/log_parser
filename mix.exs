@@ -4,12 +4,14 @@ defmodule LogParser.MixProject do
   def project do
     [
       app: :log_parser,
-      version: "0.1.0",
-      elixir: "~> 1.6",
+      version: "0.0.1",
+      elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       elixirc_paths: ["lib", "fixtures"],
       name: "LogParser",
       source_url: "https://github.com/astorre88/log_parser"
@@ -46,7 +48,10 @@ defmodule LogParser.MixProject do
 
       # Docs
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
-      {:inch_ex, "~> 0.5", only: [:dev, :test]}
+      {:inch_ex, "~> 0.5", only: [:dev, :test]},
+
+      # Test coverage
+      {:excoveralls, "~> 0.8", only: :test}
     ]
   end
 end
